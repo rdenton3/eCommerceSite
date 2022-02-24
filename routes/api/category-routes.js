@@ -63,11 +63,15 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Category.update({
-    where: {
-      id: req.params.id
-    }
-  })    
+  Category.update(
+    {
+      category_name: req.body.category_name,
+    },
+    {
+     where: {
+       id: req.params.id,
+     },
+    })   
   .then(dbUserData => {
     if (!dbUserData[0]) {
       res.status(404).json({ message: 'No user found with this id' });
